@@ -1,5 +1,8 @@
 import csv
 import fileinput
+import json
+
+import requests
 
 from flask import Flask, request
 
@@ -16,11 +19,31 @@ app = Flask(__name__)
 def request_devices():
     """ This method will allow users to get the list of devices on startup. I am unsure if I will add specific rules for
      this"""
-    """TODO ping jemma here and return devices"""
-    message = 'To be encrypted'
+    """TODO ping openHAB here and return devices"""
+    r = requests.get("http://localhost:8080/rest/items?recursive=false")
+    raw_items = json.loads(r.text)
+    items = []
+    for item in raw_items:
+        items.append(item["name"])
 
-    message = RSAMethods.encrypt_rsa(message)
-    return message
+    # message = RSAMethods.encrypt_rsa(items)
+    # return message
+    return json.dumps(items)
+
+
+@app.route('/recs', methods=['GET'])
+def request_devices2():
+    """ This method will allow users to get the list of devices on startup. I am unsure if I will add specific rules for
+     this"""
+    """TODO ping jemma here and return devices"""
+
+    value = request.form["key"]
+    r = requests.get("http://localhost:8080/rest/items/" + str(value))
+    raw_items = json.loads(r.text)
+    items = raw_items["type"]
+    # message = RSAMethods.encrypt_rsa(items)
+    # return message
+    return json.dumps(items)
 
 
 @app.route('/sec', methods=['POST'])
@@ -28,9 +51,13 @@ def request_access():
     """This is where the user will attempt to make specific access requests and will have to face ABAC """
     # ciphertext = request.form["d"]
     # size = request.form["s"]
-    sub = request.form["subject"]
-    obj = request.form["object"]
-    act = request.form["action"]
+    req = request.get_json()
+    print(req)
+    val = req["key"]
+    opt = req["option"]
+    sub = req["subject"]
+    obj = req["object"]
+    act = req["action"]
 
     #Leave commented for now until the final show, then the thing should decrypt and the
     # message = methods.decrypt_RSA(ciphertext)
@@ -39,12 +66,14 @@ def request_access():
 
     if e.enforce(sub, obj, act):
         # permit alice to read data1
+        r = requests.post("http://localhost:8080/rest/items/" + str(val), data=opt)
         resp = "pass"
     else:
         # deny the request, show an error
         resp = "You do not have the valid permissions to access devices"
 
-    return resp + " worked"
+    return resp
+
 
 @app.route('/pol', methods=['POST'])
 def update_policies():
@@ -85,5 +114,5 @@ def update_policies():
 
 
 if __name__ == '__main__':
-    app.run(port=9999)
+    app.run(host='0.0.0.0', port=9999)
 
