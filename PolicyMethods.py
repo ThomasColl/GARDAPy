@@ -20,7 +20,7 @@ def find_row(new_policy):
 def add_policy(new_policy):
     with open('policies.csv', 'a') as csv_file:
         policy_writer = csv.writer(csv_file)
-        csv_file.writelines("\n" + new_policy)
+        csv_file.writelines(new_policy + "\n")
 
 
 def edit_policy(old_policy, new_policy):

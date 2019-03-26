@@ -4,3 +4,5 @@ p, user, policies, add
 p, user, policies, del
 p, user, policies, edit
 p, alice, policies, del
+p, Jane, items, add
+p, Suzie, items, add
