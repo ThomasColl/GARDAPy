@@ -66,7 +66,7 @@ def request_access():
 
     if e.enforce(sub, obj, act):
         # permit alice to read data1
-        r = requests.post("http://localhost:8080/rest/items/" + str(val), data=opt)
+        r = requests.put("http://localhost:8080/rest/items/" + str(val) + "/state", data=str(opt).upper())
         resp = "pass"
     else:
         # deny the request, show an error
@@ -75,14 +75,26 @@ def request_access():
     return resp
 
 
+@app.route('/polr')
+def request_policies():
+    return json.dumps(PolicyMethods.get_valid_users())
+
+
+@app.route('/poll')
+def request_policies1():
+    return json.dumps(PolicyMethods.get_list())
+
+
 @app.route('/pol', methods=['POST'])
 def update_policies():
     """This is where the user will attempt to make specific access requests and will have to face ABAC """
     # ciphertext = request.form["d"]
     # size = request.form["s"]
-    sub = request.form["subject"]
-    obj = request.form["object"]
-    act = request.form["action"]
+    req = request.get_json()
+    print(req)
+    sub = req["subject"]
+    obj = req["object"]
+    act = req["action"]
 
     #Leave commented for now until the final show, then the thing should decrypt and the
     # message = methods.decrypt_RSA(ciphertext)
@@ -114,5 +126,5 @@ def update_policies():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=9999)
+    app.run(host='0.0.0.0')
 

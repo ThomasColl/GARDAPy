@@ -47,3 +47,25 @@ def delete_policy(policy_to_delete):
     # Move new file
     move(abs_path, 'policies.csv')
 
+
+def get_valid_users():
+    with open('policies.csv', 'r+') as csv_file:
+        csv_reader = csv.reader(csv_file)
+        users = []
+        for row in csv_reader:
+            if "items" in row[2]:
+                users.append(row[1])
+    csv_file.close()
+    return users
+
+
+def get_list():
+    with open('policies.csv', 'r+') as csv_file:
+        csv_reader = csv.reader(csv_file)
+        policy = []
+        for row in csv_reader:
+            policy.append(row[1] + "," + row[2] + "," + row[3])
+    csv_file.close()
+
+    return policy
+
