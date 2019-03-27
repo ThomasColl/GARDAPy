@@ -12,6 +12,7 @@ import pandas
 
 import PolicyMethods
 import RSAMethods
+import AnalyticMethods
 
 app = Flask(__name__)
 
@@ -26,6 +27,7 @@ app = Flask(__name__)
         Other: Content Requested
 """
 
+
 @app.route('/request_item_list', methods=['GET'])
 def request_devices():
     """ This method will allow users to get the list of devices on startup. I am unsure if I will add specific rules for
@@ -38,7 +40,7 @@ def request_devices():
 
     # message = RSAMethods.encrypt_rsa(items)
     # return message
-    add_request_data("Item_Request", "List_of_Devices", "Pass", "NULL", time.time())
+    add_request_data("Item_Request", "List_of_Devices", "1", "NULL", time.time())
     return json.dumps(items)
 
 
@@ -54,7 +56,7 @@ def request_devices2():
     items = raw_items["type"]
     # message = RSAMethods.encrypt_rsa(items)
     # return message
-    add_request_data("Item_Request", "List_of_Item_Options", "Pass", "NULL", time.time())
+    add_request_data("Item_Request", "List_of_Item_Options", "1", "NULL", time.time())
     return json.dumps(items)
 
 
@@ -68,7 +70,7 @@ def request_access():
         print(req)
     except:
         print("ERROR: Request was not parsed from JSON")
-        add_request_data("Item_Request", "Update_Item_State", "Fail", "Not_Correctly_Encrypted", time.time())
+        add_request_data("Item_Request", "Update_Item_State", "2", "Not_Correctly_Encrypted", time.time())
         return "2"
     try:
         val = req["key"]
@@ -77,11 +79,11 @@ def request_access():
         obj = req["object"]
         act = req["action"]
     except:
-        add_request_data("Item_Request", "Update_Item_State", "Fail", "Lacking_Policy_Credentials", time.time())
+        add_request_data("Item_Request", "Update_Item_State", "3", "Lacking_Policy_Credentials", time.time())
         print("ERROR: Policy Credentials not found")
         return "3"
 
-    #Leave commented for now until the final show, then the thing should decrypt and the
+    # Leave commented for now until the final show, then the thing should decrypt and the
     # message = methods.decrypt_RSA(ciphertext)
 
     if obj == "item":
@@ -91,11 +93,11 @@ def request_access():
             print("Successful Access")
             # permit alice to read data1
             r = requests.put("http://localhost:8080/rest/items/" + str(val) + "/state", data=str(opt).upper())
-            add_request_data("Item_Request", "Update_Item_State", "Pass", "NULL", time.time())
+            add_request_data("Item_Request", "Update_Item_State", "1", "NULL", time.time())
             print("Item Option Updated")
             return "1"
         else:
-            add_request_data("Item_Request", "Update_Item_State", "Fail", "Insufficient_Access_Credentials", time.time())
+            add_request_data("Item_Request", "Update_Item_State", "4", "Insufficient_Access_Credentials", time.time())
             # deny the request, show an error
             print("Request Denied Due To Lack Of Permissions")
             return "4"
@@ -107,13 +109,13 @@ def request_access():
 
 @app.route('/request_policies_with_item_access')
 def request_policies():
-    add_request_data("Policy_Request", "Get_Valid_Policies_For_Items", "Pass", "NULL", time.time())
+    add_request_data("Policy_Request", "Get_Valid_Policies_For_Items", "1", "NULL", time.time())
     return json.dumps(PolicyMethods.get_valid_users())
 
 
 @app.route('/request_all_policies')
 def request_policies1():
-    add_request_data("Policy_Request", "Get_All_Policies", "Pass", "NULL", time.time())
+    add_request_data("Policy_Request", "Get_All_Policies", "1", "NULL", time.time())
     return json.dumps(PolicyMethods.get_list())
 
 
@@ -126,7 +128,7 @@ def update_policies():
         req = request.get_json()
         print(req)
     except:
-        add_request_data("Policy_Request", "Update_Policies", "Fail", "Not_Correctly_Encrypted", time.time())
+        add_request_data("Policy_Request", "Update_Policies", "2", "Not_Correctly_Encrypted", time.time())
         print("ERROR: Request was not parsed from JSON")
         return "2"
     try:
@@ -134,11 +136,11 @@ def update_policies():
         obj = req["object"]
         act = req["action"]
     except:
-        add_request_data("Policy_Request", "Update_Policies", "Fail", "Lacking_Policy_Credentials", time.time())
+        add_request_data("Policy_Request", "Update_Policies", "3", "Lacking_Policy_Credentials", time.time())
         print("ERROR: Policy Credentials not found")
         return "3"
 
-    #Leave commented for now until the final show, then the thing should decrypt and the
+    # Leave commented for now until the final show, then the thing should decrypt and the
     # message = methods.decrypt_RSA(ciphertext)
 
     if obj == "policies":
@@ -156,14 +158,14 @@ def update_policies():
                 else:
                     print("New Policy Added")
                     PolicyMethods.add_policy(new_string)
-                    add_request_data("Policy_Request", "Add_Policy", "Pass", "NULL", time.time())
+                    add_request_data("Policy_Request", "Add_Policy", "1", "NULL", time.time())
                     return "1"
             elif act == "edit":
                 print("Edit Action")
                 old_policy = "p, " + req["old"]
                 new_policy = "p, " + req["new"]
                 if PolicyMethods.find_row(old_policy):
-                    add_request_data("Policy_Request", "Edit_Policy", "Pass", "NULL", time.time())
+                    add_request_data("Policy_Request", "Edit_Policy", "1", "NULL", time.time())
                     PolicyMethods.edit_policy(old_policy, new_policy)
                     return "1"
                 else:
@@ -174,7 +176,7 @@ def update_policies():
                 print("Delete Action")
                 policy_to_delete = "p, " + req["old"]  # Should read "sub,obj,act"
                 if PolicyMethods.find_row(policy_to_delete):
-                    add_request_data("Policy_Request", "Delete_Policy", "Pass", "NULL", time.time())
+                    add_request_data("Policy_Request", "Delete_Policy", "1", "NULL", time.time())
                     PolicyMethods.delete_policy(policy_to_delete)
                     return "1"
                 else:
@@ -183,7 +185,7 @@ def update_policies():
 
         else:
             # deny the request, show an error
-            add_request_data("Policy_Request", "Update_Policies", "Fail", "Insufficient_Access_Credentials", time.time())
+            add_request_data("Policy_Request", "Update_Policies", "4", "Insufficient_Access_Credentials", time.time())
             print("Insufficient Policies")
             resp = "You do not have the valid permissions to access devices"
             return "4"
@@ -191,6 +193,47 @@ def update_policies():
         return "3"
 
     return "6"
+
+
+@app.route('/request_analytics', methods=['POST'])
+def request_analytics():
+    try:
+        req = request.get_json()
+        print(req)
+    except:
+        add_request_data("Analytics_Request", "Request_Analytics", "2", "Not_Correctly_Encrypted", time.time())
+        print("ERROR: Request was not parsed from JSON")
+        return "2"
+    try:
+        sub = req["subject"]
+        obj = req["object"]
+        act = req["action"]
+    except:
+        add_request_data("Analytics_Request", "Request_Analytics", "3", "Lacking_Policy_Credentials", time.time())
+        print("ERROR: Policy Credentials not found")
+        return "3"
+
+    # Leave commented for now until the final show, then the thing should decrypt and the
+    # message = methods.decrypt_RSA(ciphertext)
+
+    if obj == "analytics":
+        e = casbin.Enforcer("acl.conf", "policies.csv")
+
+        if e.enforce(sub, obj, act):
+            choice = req["type"]
+            if choice == 1:
+                add_request_data("Analytics_Request", "Request_Analytics", "1", "NULL", time.time())
+                return json.dumps(AnalyticMethods.get_all_request_data())
+            elif choice == 2:
+                add_request_data("Analytics_Request", "Request_Analytics", "1", "NULL", time.time())
+                return json.dumps(AnalyticMethods.get_all_successful_request_data())
+            elif choice == 3:
+                add_request_data("Analytics_Request", "Request_Analytics", "1", "NULL", time.time())
+                return json.dumps(AnalyticMethods.get_all_unsuccessful_request_data())
+            else:
+                add_request_data("Analytics_Request", "Request_Analytics", "5", "Request_Type_Unavailable",
+                                 time.time())
+                return 5
 
 
 def add_request_data(request_type, resource_requested, response, reason, timestamp):
@@ -202,4 +245,3 @@ def add_request_data(request_type, resource_requested, response, reason, timesta
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
-
