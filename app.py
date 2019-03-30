@@ -82,14 +82,18 @@ def request_access():
 
     # Leave commented for now until the final show, then the thing should decrypt and the
     # message = methods.decrypt_RSA(ciphertext)
-
-    if obj == "item":
+    print("Enforcement Point")
+    if obj == "items":
+        print("Is Object")
         e = casbin.Enforcer("acl.conf", "policies.csv")
 
         if e.enforce(sub, obj, act):
             print("Successful Access")
-            # permit alice to read data1
-            r = requests.put("http://localhost:8080/rest/items/" + str(val) + "/state", data=str(opt).upper())
+            print(val)
+            print(str(opt).upper())
+            r = requests.post("http://localhost:8080/rest/items/" + str(val), data=str(opt).upper())
+            print(r.text)
+            # r = requests.put("http://localhost:8080/rest/items/" + str(val) + "/state", data=str(opt).upper())
             add_request_data("Item_Request", "Update_Item_State", "1", "NULL", time.time())
             print("Item Option Updated")
             return "1"
