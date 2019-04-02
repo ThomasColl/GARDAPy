@@ -165,11 +165,15 @@ def update_policies():
                 print("Edit Action")
                 old_policy = "p, " + req["old"]
                 new_policy = "p, " + req["new"]
+                print(old_policy + " old policy")
+                print(req["old"] + " raq policy")
                 if PolicyMethods.find_row(old_policy):
+                    print("Found row")
                     add_request_data("Policy_Request", "Edit_Policy", "1", "NULL", time.time())
                     PolicyMethods.edit_policy(old_policy, new_policy)
                     return "1"
                 else:
+                    print("Did not find row")
                     add_request_data("Policy_Request", "Edit_Policy", "Unsure", "Policy_Does_Not_Exist", time.time())
                     resp = "The policy requested doesnt exist"
                     return "5"

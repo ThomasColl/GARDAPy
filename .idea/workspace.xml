@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2d0463a1-1ff3-41ea-bd22-32d1533e3499" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolicyMethods.py" beforeDir="false" afterPath="$PROJECT_DIR$/PolicyMethods.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RequestData.csv" beforeDir="false" afterPath="$PROJECT_DIR$/RequestData.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/policies.csv" beforeDir="false" afterPath="$PROJECT_DIR$/policies.csv" afterDir="false" />
@@ -15,7 +16,7 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/GARDAPy$methods.coverage" NAME="methods Coverage Results" MODIFIED="1552402541587" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/GARDAPy$GARDAPy.coverage" NAME="GARDAPy Coverage Results" MODIFIED="1553959417932" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/GARDAPy$GARDAPy.coverage" NAME="GARDAPy Coverage Results" MODIFIED="1554209437523" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FavoritesManager">
     <favorites_list name="GARDAPy" />
@@ -25,8 +26,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1175">
-              <caret line="134" column="8" lean-forward="true" selection-start-line="134" selection-start-column="8" selection-end-line="134" selection-end-column="8" />
+            <state relative-caret-position="1774">
+              <caret line="168" column="32" selection-start-line="168" selection-start-column="32" selection-end-line="168" selection-end-column="32" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -34,10 +35,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/werkzeug/test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="213">
+            <state relative-caret-position="17404">
               <caret line="922" selection-start-line="922" selection-end-line="922" />
             </state>
           </provider>
@@ -46,17 +47,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/AnalyticMethods.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-53">
+            <state relative-caret-position="38">
               <caret line="2" selection-start-line="2" selection-end-line="2" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/PolicyMethods.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="16" column="16" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
+            <state relative-caret-position="117">
+              <caret line="55" selection-start-line="55" selection-end-line="55" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -67,8 +68,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/RequestData.csv">
           <provider selected="true" editor-type-id="csv-text-editor">
-            <state relative-caret-position="1273">
-              <caret line="67" selection-start-line="67" selection-end-line="67" />
+            <state relative-caret-position="381">
+              <caret line="124" column="32" selection-start-line="124" selection-start-column="32" selection-end-line="124" selection-end-column="32" />
             </state>
           </provider>
           <provider editor-type-id="csv-table-editor">
@@ -79,8 +80,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/policies.csv">
           <provider selected="true" editor-type-id="csv-text-editor">
-            <state relative-caret-position="95">
-              <caret line="5" column="27" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
+            <state relative-caret-position="190">
+              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
             </state>
           </provider>
           <provider editor-type-id="csv-table-editor">
@@ -160,11 +161,11 @@
         <option value="$PROJECT_DIR$/conf.xml" />
         <option value="$PROJECT_DIR$/basic_policy.csv" />
         <option value="$PROJECT_DIR$/RSAMethods.py" />
-        <option value="$PROJECT_DIR$/PolicyMethods.py" />
-        <option value="$PROJECT_DIR$/policies.csv" />
         <option value="$PROJECT_DIR$/AnalyticMethods.py" />
         <option value="$PROJECT_DIR$/RequestData.csv" />
         <option value="$PROJECT_DIR$/app.py" />
+        <option value="$PROJECT_DIR$/policies.csv" />
+        <option value="$PROJECT_DIR$/PolicyMethods.py" />
       </list>
     </option>
   </component>
@@ -285,21 +286,25 @@
       <workItem from="1553861313203" duration="1533000" />
       <workItem from="1553869683060" duration="4678000" />
       <workItem from="1553959323106" duration="1512000" />
+      <workItem from="1554122824861" duration="1270000" />
+      <workItem from="1554202046646" duration="973000" />
+      <workItem from="1554206673103" duration="2555000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="82297000" />
+    <option name="totallyTimeSpent" value="87095000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1920" height="1002" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49942726" visible="true" weight="0.2769477" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49942726" visible="true" weight="0.28655282" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" sideWeight="0.50057274" side_tool="true" weight="0.23585913" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3298969" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49573106" weight="0.32760596" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49573106" visible="true" weight="0.32760596" />
       <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="5" />
@@ -449,36 +454,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PolicyMethods.py">
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/werkzeug/test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="16" column="16" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="17404">
+          <caret line="922" selection-start-line="922" selection-end-line="922" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RequestData.csv">
-      <provider selected="true" editor-type-id="csv-text-editor">
-        <state relative-caret-position="1273">
-          <caret line="67" selection-start-line="67" selection-end-line="67" />
+    <entry file="file://$PROJECT_DIR$/AnalyticMethods.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
         </state>
       </provider>
-      <provider editor-type-id="csv-table-editor">
-        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/policies.csv">
-      <provider selected="true" editor-type-id="csv-text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="27" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
-        </state>
-      </provider>
-      <provider editor-type-id="csv-table-editor">
-        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
-      </provider>
-      <provider editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/RSAMethods.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -497,27 +485,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AnalyticMethods.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-53">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
+    <entry file="file://$PROJECT_DIR$/RequestData.csv">
+      <provider selected="true" editor-type-id="csv-text-editor">
+        <state relative-caret-position="381">
+          <caret line="124" column="32" selection-start-line="124" selection-start-column="32" selection-end-line="124" selection-end-column="32" />
         </state>
       </provider>
+      <provider editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/policies.csv">
+      <provider selected="true" editor-type-id="csv-text-editor">
+        <state relative-caret-position="190">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+      <provider editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
+      </provider>
+      <provider editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1175">
-          <caret line="134" column="8" lean-forward="true" selection-start-line="134" selection-start-column="8" selection-end-line="134" selection-end-column="8" />
+        <state relative-caret-position="1774">
+          <caret line="168" column="32" selection-start-line="168" selection-start-column="32" selection-end-line="168" selection-end-column="32" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/werkzeug/test.py">
+    <entry file="file://$PROJECT_DIR$/PolicyMethods.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="922" selection-start-line="922" selection-end-line="922" />
+        <state relative-caret-position="117">
+          <caret line="55" selection-start-line="55" selection-end-line="55" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
