@@ -1,5 +1,5 @@
 p, user, items, edit
-p, thomas, policies, add
+p, Jane, policies, add
 p, user, policies, add
 p, user, policies, del
 p, user, policies, edit
@@ -7,4 +7,6 @@ p, user, analytics, request
 
 
 p, Suzie, items, add
+
+p, Suzie, items, edit
 

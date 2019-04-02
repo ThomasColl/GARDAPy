@@ -63,7 +63,9 @@ def request_access():
     # ciphertext = request.form["d"]
     # size = request.form["s"]
     try:
-        req = request.get_json()
+        input = RSAMethods.decrypt(request.get_data())
+        print(input)
+        req = json.loads(input)
         print(req)
     except:
         print("ERROR: Request was not parsed from JSON")
@@ -126,7 +128,9 @@ def update_policies():
     # ciphertext = request.form["d"]
     # size = request.form["s"]
     try:
-        req = request.get_json()
+        input = RSAMethods.decrypt(request.get_data())
+        print(input)
+        req = json.loads(input)
         print(req)
     except:
         add_request_data("Policy_Request", "Update_Policies", "2", "Not_Correctly_Encrypted", time.time())
@@ -203,7 +207,9 @@ def update_policies():
 @app.route('/request_analytics', methods=['POST'])
 def request_analytics():
     try:
-        req = request.get_json()
+        input = RSAMethods.decrypt(request.get_data())
+        print(input)
+        req = json.loads(input)
         print(req)
     except:
         add_request_data("Analytics_Request", "Request_Analytics", "2", "Not_Correctly_Encrypted", time.time())
