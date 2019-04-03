@@ -51,6 +51,7 @@ def request_devices2():
     r = requests.get("http://localhost:8080/rest/items/" + str(value))
     raw_items = json.loads(r.text)
     items = raw_items["type"]
+    print(items)
     # message = RSAMethods.encrypt_rsa(items)
     # return message
     add_request_data("Item_Request", "List_of_Item_Options", "1", "NULL", time.time())
@@ -245,6 +246,33 @@ def request_analytics():
                 add_request_data("Analytics_Request", "Request_Analytics", "5", "Request_Type_Unavailable",
                                  time.time())
                 return 5
+
+
+@app.route('/receive_feedback', methods=['POST'])
+def receive_feedback():
+    try:
+        input = RSAMethods.decrypt(request.get_data())
+        print(input)
+        req = json.loads(input)
+        print(req)
+    except:
+        add_request_data("Feedback_Request", "Receive_Feedback", "2", "Not_Correctly_Encrypted", time.time())
+        print("ERROR: Request was not parsed from JSON")
+        return "2"
+    try:
+        email = req["email"]
+        subject = req["sub"]
+        feedback = req["feed"]
+    except:
+        add_request_data("Feedback_Request", "Receive_Feedback", "3", "Lacking_Policy_Credentials", time.time())
+        print("ERROR: Policy Credentials not found")
+        return "3"
+
+    with open('feedback.csv', 'a') as csv_file:
+        # policy_writer = csv.writer(csv_file)
+        csv_file.writelines(email + "," + subject + "," + feedback + "\n")
+    add_request_data("Feedback_Request", "Receive_Feedback", "1", "NULL", time.time())
+    return "1"
 
 
 def add_request_data(request_type, resource_requested, response, reason, timestamp):
