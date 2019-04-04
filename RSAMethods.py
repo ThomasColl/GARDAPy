@@ -1,5 +1,4 @@
 from Crypto.PublicKey import RSA
-from Crypto.Random import get_random_bytes
 from Crypto.Cipher import AES, PKCS1_OAEP
 
 
@@ -24,4 +23,3 @@ def decrypt(req):
     file_in.close()
 
     return data.decode("utf-8")
-

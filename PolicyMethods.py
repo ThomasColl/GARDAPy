@@ -8,7 +8,6 @@ from tempfile import mkstemp
 def find_row(new_policy):
     with open('policies.csv', 'r+') as csv_file:
         csv_reader = csv.reader(csv_file)
-        policy_exists = False
         for row in csv_reader:
             row_as_string = ",".join(row)
             if new_policy == row_as_string:
@@ -70,4 +69,3 @@ def get_list():
     csv_file.close()
 
     return policy
-
