@@ -14,7 +14,7 @@ def get_all_request_data():
     return x_list, y_list
 
 
-def get_all_successful_request_data():
+def get_successful_request_data():
     x_list = []
     y_list = []
     with open('RequestData.csv', 'r+') as csv_file:
@@ -28,7 +28,7 @@ def get_all_successful_request_data():
     return x_list, y_list
 
 
-def get_all_unsuccessful_request_data():
+def get_unsuccessful_request_data():
     x_list = []
     y_list = []
     with open('RequestData.csv', 'r+') as csv_file:

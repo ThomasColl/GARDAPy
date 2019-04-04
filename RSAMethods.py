@@ -23,9 +23,5 @@ def decrypt(req):
     data = cipher_aes.decrypt_and_verify(ciphertext, tag)
     file_in.close()
 
-    #TODO Take input given and erase previous encrypted message
-    # file_out = open("encrypted_data.txt", "wb")
-    # file_out.write("")
-
     return data.decode("utf-8")
 
