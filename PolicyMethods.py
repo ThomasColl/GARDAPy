@@ -53,7 +53,7 @@ def get_valid_users():
         users = []
         for row in csv_reader:
             if row:
-                if "items" in row[2]:
+                if row[1] not in users:
                     users.append(row[1])
     csv_file.close()
     return users
