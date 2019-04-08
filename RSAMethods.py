@@ -21,5 +21,5 @@ def decrypt(req):
     cipher_aes = AES.new(session_key, AES.MODE_EAX, nonce)
     data = cipher_aes.decrypt_and_verify(ciphertext, tag)
     file_in.close()
-
+    open('encrypted_data.txt', 'w').close()
     return data.decode("utf-8")
